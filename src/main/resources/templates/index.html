@@ -16,22 +16,43 @@
 
 
     <!--for loop for getting list of students and while looping through it we put the students into a list-->
-    <div>
+    <div style="margin-bottom: 30px">
         <table border="1">
             <thead>
                 <th>Name</th>
-                <th>Surname</th>
+                <!--<th>Surname</th>-->
                 <th>Age</th>
+                <th>Status</th>
+                <th>Gender</th>
             </thead>
             <tbody>
-                <tr th:each="student: ${students}">
-                    <td th:text="${student.name}"/>
-                    <td th:text="${student.surname}"/>
-                    <td th:text="${student.age}"/>
+                <tr th:each="person: ${persons}">
+                    <td th:text="${person.name}"/>
+                    <!--<td th:text="${student.surname}"/>-->
+                    <td th:text="${person.age}"/>
+                    <td>
+                        <span th:if="${person.age &lt; 30}" th:text="Toddler"/>
+                        <span th:if="${person.age &gt; 30}" th:text="Old"/>
+                    </td>
+                    <td>
+                        <span th:if="${person.gender == 'M'}" th:text="Male"/>
+                        <span th:if="${person.gender == 'F'}" th:text="Female"/>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <form action="#" th:action="@{/savePerson}" method="post" th:object="${newPerson}">
+        <input type="text" placeholder="Name" th:field="*{name}"><br>
+        <input type="text" placeholder="Surname" th:field="*{surname}"><br>
+        <input type="number" name="Age" th:field="*{age}"><br>
+        <select th:field="*{gender}">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select><br>
+        <input type="submit" name="saveStudent" value="Save new person">
+    </form>
 
 </body>
 </html>
