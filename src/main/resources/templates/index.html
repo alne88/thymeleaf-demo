@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Front page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
     <h2 th:text="${greeting}"/>
+
+    <div style="margin-bottom: 20px">
+        <label style="margin-right: 5px">First name:</label><span th:text="${person.name}"/><br>
+        <label style="margin-right: 5px">Last name:</label><span th:text="${person.surname}"/><br>
+        <label style="margin-right: 5px">Age:</label><span th:text="${person.age}"/><br>
+    </div>
+
+
+    <!--for loop for getting list of students and while looping through it we put the students into a list-->
+    <div>
+        <table border="1">
+            <thead>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+            </thead>
+            <tbody>
+                <tr th:each="student: ${students}">
+                    <td th:text="${student.name}"/>
+                    <td th:text="${student.surname}"/>
+                    <td th:text="${student.age}"/>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>
